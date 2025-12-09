@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { GitBranch, Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function Navbar() {
   const [isDark, setIsDark] = useState(true)
@@ -36,10 +37,10 @@ export function Navbar() {
     >
       <div className="flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-            <GitBranch className="w-5 h-5 text-primary" />
+          <div className="p-1.5 rounded-lg group-hover:bg-primary/20 transition-colors">
+            <Image src="/code-mem-logo-no-bg-sharp.png" alt="Logo" width={50} height={50} />
           </div>
-          <span className="font-semibold text-foreground text-sm">Code Memory</span>
+          <span className="font-semibold text-foreground text-md">Code Memory</span>
         </a>
 
         <div className="hidden md:flex items-center gap-6">

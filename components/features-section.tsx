@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Sparkles, FileCode, Tags, Zap, Shield, Clock } from "lucide-react"
+import Image from "next/image"
 
 const features = [
   {
@@ -69,6 +70,7 @@ export function FeaturesSection() {
     <section id="features" className="py-20 md:py-32 bg-secondary/30" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
+          <Image src="/cohere-logo.png" alt="Cohere Logo" width={150} height={50} className="mx-auto mb-4" />
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Powered by Cohere</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Enterprise-grade AI features that understand your codebase.

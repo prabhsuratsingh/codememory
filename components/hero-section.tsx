@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { GitCommit, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -12,22 +13,21 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section className="relative min-h-[85vh] pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <div 
+        className="
+          absolute inset-0 overflow-hidden 
+          bg-cover bg-center
+          bg-[url('/hero-bg-light.png')]
+          dark:bg-[url('/hero-bg-dark.png')]
+          transition-[background-image] duration-500
+        "
+      >
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
         <div
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse-glow"
           style={{ animationDelay: "1.5s" }}
         />
-
-        {/* Git branch lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <circle cx="30" cy="30" r="1.5" fill="currentColor" className="text-foreground" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -41,14 +41,14 @@ export function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight text-balance">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight text-balance">
             AI That <span className="text-primary">Remembers</span>
             <br />
             Your Project
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed text-balance">
+          <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed text-balance">
             Developers constantly forget why something was written.
             <br className="hidden md:block" />A tool that stores + retrieves the reasoning behind code changes.
           </p>
@@ -62,7 +62,7 @@ export function HeroSection() {
               Start for Free
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
+            <Button size="lg" variant="outline" className="rounded-full px-8 bg-amber-50">
               <code className="text-sm">$ npm i code-memory</code>
             </Button>
           </div>

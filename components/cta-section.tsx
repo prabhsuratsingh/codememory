@@ -2,17 +2,18 @@
 
 import { GitBranch, ArrowRight, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export function CTASection() {
   return (
     <section className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary/12 to-transparent" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
-            <GitBranch className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-6">
+            <Image src="/code-mem-logo-no-bg-sharp.png" alt="Logo" width={80} height={80} />
+            
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">
@@ -38,7 +39,6 @@ export function CTASection() {
             </Button>
           </div>
 
-          {/* Install command */}
           <div className="mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-secondary border border-border">
             <code className="text-sm text-muted-foreground">$ npm install -g code-memory</code>
             <button

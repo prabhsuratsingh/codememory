@@ -37,8 +37,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Code Memory. Built with Cohere.
+        <div className="mt-8 text-center items-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} Code Memory
         </div>
       </div>
     </footer>
