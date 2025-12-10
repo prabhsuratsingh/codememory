@@ -3,15 +3,18 @@
 import { useState, useEffect } from "react"
 import { GitBranch, Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Image from "next/image"
+import { useTheme } from "next-themes"
 
 export function Navbar() {
-  const [isDark, setIsDark] = useState(true)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    document.documentElement.classList.add("dark")
+    setMounted(true)
   }, [])
 
   useEffect(() => {
@@ -23,8 +26,7 @@ export function Navbar() {
   }, [])
 
   const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle("dark")
+    setTheme(theme === "dark" ? "light" : "dark")
   }
 
   return (
@@ -36,12 +38,12 @@ export function Navbar() {
       } rounded-full px-4 md:px-6 py-3`}
     >
       <div className="flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="p-1.5 rounded-lg group-hover:bg-primary/20 transition-colors">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
             <Image src="/code-mem-logo-no-bg-sharp.png" alt="Logo" width={50} height={50} />
           </div>
-          <span className="font-semibold text-foreground text-md">Code Memory</span>
-        </a>
+          <span className="font-semibold text-foreground text-sm">Code Memory</span>
+        </Link>
 
         <div className="hidden md:flex items-center gap-6">
           <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -53,11 +55,14 @@ export function Navbar() {
           <a href="#demo" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Demo
           </a>
+          <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Docs
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full w-9 h-9">
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {mounted && theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </Button>
           <Button className="hidden md:flex rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm px-4">
             Get Started
@@ -88,6 +93,9 @@ export function Navbar() {
             <a href="#demo" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
               Demo
             </a>
+            <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
+              Docs
+            </Link>
             <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-sm mt-2">
               Get Started
             </Button>
