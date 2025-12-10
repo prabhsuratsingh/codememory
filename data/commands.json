@@ -1,0 +1,170 @@
+{
+  "commands": [
+    {
+      "slug": "init",
+      "name": "init",
+      "description": "Initialize CodeMemory in your Git repository.",
+      "usage": "codememory init [options]",
+      "options": [
+        {
+          "flag": "--force, -f",
+          "description": "Overwrite existing configuration if present"
+        },
+        {
+          "flag": "--no-hook",
+          "description": "Skip Git pre-commit hook installation"
+        },
+        {
+          "flag": "--db <path>",
+          "description": "Custom path for the vector database (default: .codememory/db)"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Basic initialization",
+          "command": "codememory init"
+        },
+        {
+          "title": "Force re-initialization",
+          "command": "codememory init --force"
+        }
+      ]
+    },
+    {
+      "slug": "query",
+      "name": "query",
+      "description": "Ask natural language questions about your codebase history.",
+      "usage": "codememory query <question> [options]",
+      "options": [
+        {
+          "flag": "--limit, -l <number>",
+          "description": "Maximum number of relevant commits to retrieve (default: 5)"
+        },
+        {
+          "flag": "--json",
+          "description": "Output results in JSON format"
+        },
+        {
+          "flag": "--no-explain",
+          "description": "Skip AI-generated explanation, show raw results only"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Ask about architectural decisions",
+          "command": "codememory query \"Why did we switch from Redis to DynamoDB?\""
+        },
+        {
+          "title": "Find implementation details",
+          "command": "codememory query \"Where is user-session expiry implemented?\""
+        },
+        {
+          "title": "Get JSON output for scripting",
+          "command": "codememory query \"authentication changes\" --json --limit 10"
+        }
+      ]
+    },
+    {
+      "slug": "index",
+      "name": "index",
+      "description": "Manually index commits into the vector database.",
+      "usage": "codememory index [options]",
+      "options": [
+        {
+          "flag": "--from <commit>",
+          "description": "Start indexing from this commit (default: first commit)"
+        },
+        {
+          "flag": "--to <commit>",
+          "description": "Stop indexing at this commit (default: HEAD)"
+        },
+        {
+          "flag": "--reindex",
+          "description": "Re-index all commits, even if already indexed"
+        },
+        {
+          "flag": "--batch <size>",
+          "description": "Number of commits to process per batch (default: 50)"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Index all commits",
+          "command": "codememory index"
+        },
+        {
+          "title": "Index last 100 commits only",
+          "command": "codememory index --from HEAD~100"
+        }
+      ]
+    },
+    {
+      "slug": "config",
+      "name": "config",
+      "description": "Configure CodeMemory settings for your project.",
+      "usage": "codememory config [options]",
+      "options": [
+        {
+          "flag": "--api-key <key>",
+          "description": "Set your Cohere API key"
+        },
+        {
+          "flag": "--db <path>",
+          "description": "Set custom path for vector database"
+        },
+        {
+          "flag": "--model <name>",
+          "description": "Set embedding model (default: embed-english-v3.0)"
+        },
+        {
+          "flag": "--list",
+          "description": "Display all current configuration values"
+        },
+        {
+          "flag": "--reset",
+          "description": "Reset configuration to defaults"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Set API key",
+          "command": "codememory config --api-key sk-xxxxx"
+        },
+        {
+          "title": "View current configuration",
+          "command": "codememory config --list"
+        }
+      ]
+    },
+    {
+      "slug": "status",
+      "name": "status",
+      "description": "Check the current status of your CodeMemory installation.",
+      "usage": "codememory status [options]",
+      "options": [
+        {
+          "flag": "--json",
+          "description": "Output status in JSON format"
+        },
+        {
+          "flag": "--verbose, -v",
+          "description": "Show detailed status information"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Check status",
+          "command": "codememory status"
+        },
+        {
+          "title": "Detailed status",
+          "command": "codememory status --verbose"
+        }
+      ],
+      "exampleOutput": {
+        "title": "Example Output",
+        "content": "CodeMemory Status\n─────────────────────────────────\n✓ Git hook installed\n✓ API key configured\n✓ Vector DB connected\n\nIndexed commits:    1,247\nDatabase size:      24.3 MB\nLast indexed:       2 hours ago"
+      }
+    }
+  ]
+}
